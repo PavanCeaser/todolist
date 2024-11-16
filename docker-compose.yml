@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  couchdb:
+    image: couchdb:latest
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=password
+    ports:
+      - "5984:5984"
+
+  flask_app:
+    build: .
+    environment:
+    # Update the CouchDB URL with the container name
+
+
+      - COUCHDB_URL=http://admin:password@todolist-couchdb-1:5984/
+    ports:
+      - "5000:5000"
